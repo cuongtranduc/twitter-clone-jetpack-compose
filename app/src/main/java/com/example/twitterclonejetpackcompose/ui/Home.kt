@@ -16,6 +16,7 @@ import com.example.twitterclonejetpackcompose.R
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterGray
+import com.example.twitterclonejetpackcompose.ui.tweet.TweetList
 
 @Composable
 fun Home(openDrawer: () -> Unit) {
@@ -24,33 +25,16 @@ fun Home(openDrawer: () -> Unit) {
     Column(Modifier.fillMaxHeight()) {
         AppTopBar(openDrawer = openDrawer)
         Divider(color = Color.LightGray, thickness = 0.25.dp)
-        Box(Modifier.weight(1f))
+        StoryList()
+        Column(
+            modifier = Modifier
+                .padding(vertical = 12.dp, horizontal = 12.dp)
+                .weight(1f)
+        ) {
+//            TweetList()
+        }
         Box(Modifier) {
             AppBottomBar()
-        }
-    }
-}
-
-@Composable
-fun Screen1Component(openDrawer: () -> Unit) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopAppBar(
-            title = { Text("Screen 1 Title") },
-            navigationIcon = {
-                IconButton(onClick = openDrawer) {
-                    Icon(imageVector = Icons.Filled.Menu, null)
-                }
-            }
-        )
-        Surface(color = Color(0xFFffd7d7.toInt()), modifier = Modifier.weight(1f)) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                content = {
-                    Text(text = "Screen 1")
-                }
-            )
         }
     }
 }

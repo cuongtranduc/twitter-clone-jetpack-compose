@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -133,13 +134,15 @@ fun CatalogListContent(modifier: Modifier) {
                 )
                 Column(modifier = modifier.padding(horizontal = 25.dp)) {
                     Text(
-                        text = "Settings and privacy",
+                        text = "Settings and Privacy",
                         fontSize = 18.sp,
+                        fontWeight = W500
                     )
                     Text(
                         text = "Support Center",
                         modifier = Modifier.padding(vertical = 15.dp),
                         fontSize = 18.sp,
+                        fontWeight = W500
                     )
                 }
             }

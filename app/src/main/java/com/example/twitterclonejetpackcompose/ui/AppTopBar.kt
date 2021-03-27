@@ -1,8 +1,7 @@
 package com.example.twitterclonejetpackcompose.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.TopAppBar
@@ -24,7 +23,9 @@ fun AppTopBar(openDrawer: () -> Unit = {}) {
         backgroundColor = Color(0xFFFFFF),
         title = {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .padding(start = 0.dp, end = 20.dp)
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
@@ -37,7 +38,10 @@ fun AppTopBar(openDrawer: () -> Unit = {}) {
 
         },
         navigationIcon = {
-            IconButton(onClick = openDrawer) {
+            IconButton(
+                onClick = openDrawer,
+                modifier = Modifier
+            ) {
                 Icon(
                     imageVector = Icons.Filled.Menu,
                     null,
@@ -47,7 +51,9 @@ fun AppTopBar(openDrawer: () -> Unit = {}) {
             }
         },
         actions = {
-            IconButton(onClick = {}) {
+            IconButton(
+                onClick = {}, modifier = Modifier
+            ) {
                 Icon(
                     painter = painterResource(R.drawable.ic_trends),
                     null,
