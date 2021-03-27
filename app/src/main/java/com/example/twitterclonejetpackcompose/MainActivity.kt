@@ -5,10 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.twitterclonejetpackcompose.ui.drawer.DrawerAppComponent
+import com.example.twitterclonejetpackcompose.ui.Main
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterCloneJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +14,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TwitterCloneJetpackComposeTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    DrawerAppComponent()
+                    Main()
                 }
             }
         }

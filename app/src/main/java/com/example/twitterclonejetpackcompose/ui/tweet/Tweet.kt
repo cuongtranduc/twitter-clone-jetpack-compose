@@ -1,8 +1,8 @@
 package com.example.twitterclonejetpackcompose.ui.tweet
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,46 +16,55 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.twitterclonejetpackcompose.R
 import com.example.twitterclonejetpackcompose.data.Tweet
-import com.example.twitterclonejetpackcompose.ui.drawer.user
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterGray
 import com.google.accompanist.coil.CoilImage
 
-val tweet = Tweet()
+//val tweet = Tweet()
 
 @Composable
-fun TweetCompose(modifier: Modifier = Modifier) {
-    Row(modifier = modifier) {
-        CoilImage(
-            data = tweet.profileUrl,
-            contentDescription = "Profile Image",
-            modifier = Modifier
-                .width(55.dp)
-                .clip(shape = CircleShape)
-        )
+fun TweetCompose(index: Int, tweet: Tweet, modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
+        if (index != 0) {
+            Divider(
+                modifier = Modifier
+                    .padding(vertical = 10.dp),
+                color = Color.LightGray,
+                thickness = 0.25.dp
+            )
+        }
+        Row(modifier = Modifier.padding(horizontal = 12.dp)) {
+            CoilImage(
+                data = tweet.profileUrl,
+                contentDescription = "Profile Image",
+                modifier = Modifier
+                    .width(55.dp)
+                    .clip(shape = CircleShape)
+            )
 
-        Column(
-            modifier = Modifier.padding(start = 10.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
+            Column(
+                modifier = Modifier.padding(start = 10.dp)
             ) {
-                Text(
-                    tweet.displayName,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    " @" + tweet.userName,
-                    color = TwitterGray,
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        tweet.displayName,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        " @" + tweet.userName,
+                        color = TwitterGray,
+                    )
+                }
+                Text(tweet.content, modifier = Modifier.padding(top = 5.dp))
+                IconRow(tweet)
             }
-            Text(tweet.content, modifier = Modifier.padding(top = 3.dp))
-            IconRow()
         }
     }
 }
 
 @Composable
-fun IconRow() {
+fun IconRow(tweet: Tweet) {
     Row(modifier = Modifier.padding(top = 8.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(

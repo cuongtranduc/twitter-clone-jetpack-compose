@@ -2,34 +2,26 @@ package com.example.twitterclonejetpackcompose.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.sharp.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.twitterclonejetpackcompose.R
 import com.example.twitterclonejetpackcompose.data.Story
-import com.example.twitterclonejetpackcompose.ui.drawer.Catalog
-import com.example.twitterclonejetpackcompose.ui.drawer.user
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterGray
 import com.google.accompanist.coil.CoilImage
@@ -39,11 +31,11 @@ val Stories: ArrayList<Story> = arrayListOf(
         "Elon Musk",
         "https://images.mktw.net/im-311693?width=620&size=1.4382022471910112"
     ),
-    Story("Bill Gate", "https://bstyle.vn/wp-content/uploads/2018/11/bill-gates.jpg"),
+    Story("Thanos", "https://i.insider.com/5ae75d4ebd967122008b4623?width=100"),
     Story(),
-    Story("Bill Gate", "https://bstyle.vn/wp-content/uploads/2018/11/bill-gates.jpg"),
+    Story("Thanos", "https://i.insider.com/5ae75d4ebd967122008b4623?width=100"),
     Story(),
-    Story("Bill Gate", "https://bstyle.vn/wp-content/uploads/2018/11/bill-gates.jpg"),
+    Story("Thanos", "https://i.insider.com/5ae75d4ebd967122008b4623?width=100"),
     Story(),
     Story(
         "Elon Musk",
@@ -57,7 +49,6 @@ fun StoryList() {
     LazyRow(
         modifier = Modifier
             .padding(top = 10.dp)
-            .padding(horizontal = 15.dp)
     ) {
         item {
             CreateStoryCompose()
@@ -67,7 +58,7 @@ fun StoryList() {
         }
     }
     Divider(
-        modifier = Modifier.padding(top = 5.dp, bottom = 10.dp),
+        modifier = Modifier.padding(top = 5.dp),
         color = Color.LightGray,
         thickness = 0.25.dp
     )
@@ -75,10 +66,11 @@ fun StoryList() {
 
 @Composable
 fun CreateStoryCompose() {
-    Box() {
+    Box(
+        modifier = Modifier
+            .padding(start = 15.dp, end = 18.dp)
+    ) {
         Column(
-            modifier = Modifier
-                .padding(end = 18.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
@@ -93,7 +85,7 @@ fun CreateStoryCompose() {
                     contentDescription = "Profile Image",
                     modifier = Modifier
                         .width(50.dp)
-                        .clip(shape = CircleShape)
+                        .clip(shape = CircleShape),
                 )
             }
             Text(

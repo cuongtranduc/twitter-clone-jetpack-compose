@@ -1,62 +1,48 @@
-package com.example.twitterclonejetpackcompose.ui.drawer
+package com.example.twitterclonejetpackcompose.ui.navigaton
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.navigate
 import com.example.twitterclonejetpackcompose.R
 import com.example.twitterclonejetpackcompose.data.User
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterGray
 import com.google.accompanist.coil.CoilImage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 val user = User()
 
 data class Catalog(val rsKey: Int, val title: String)
 
-val catalogList: ArrayList<Catalog> = arrayListOf(
-    Catalog(R.drawable.ic_like, "Profile"),
-    Catalog(R.drawable.ic_lists, "Lists"),
-    Catalog(R.drawable.ic_topics, "Topics"),
-    Catalog(R.drawable.ic_bookmarks, "Bookmarks"),
-    Catalog(R.drawable.ic_moments, "Moments"),
+val bottomNavigations = listOf(
+    Route.Profile,
+    Route.Lists,
+    Route.Topics,
+    Route.Bookmarks,
+    Route.Moments
 )
 
 @Composable
-fun DrawerContent(
-    currentScreen: MutableState<DrawerAppScreen>,
-    closeDrawer: () -> Unit
-) {
-//    Column(modifier = Modifier.fillMaxSize()) {
-//        for (index in DrawerAppScreen.values().indices) {
-//            val screen = getScreenBasedOnIndex(index)
-//            Column(Modifier.clickable(onClick = {
-//                currentScreen.value = screen
-//                closeDrawer()
-//            }), content = {
-//            })
-//        }
-//    }
+fun DrawerContent(navController: NavHostController, scaffoldState: ScaffoldState) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -74,7 +60,9 @@ fun DrawerContent(
                 color = Color.LightGray,
                 thickness = 0.25.dp
             )
-            CatalogListContent(
+            ListContent(
+                navController,
+                scaffoldState,
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1F)
@@ -115,16 +103,17 @@ fun ProfileContent(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CatalogListContent(modifier: Modifier) {
-//    val items = mutableListOf<Catalog>(catalogList)
+fun ListContent(
+    navController: NavHostController,
+    scaffoldState: ScaffoldState,
+    modifier: Modifier
+) {
     Column(
         modifier = modifier
     ) {
         LazyColumn() {
-            items(items = catalogList) {
-                CataLogRow(
-                    catalog = it,
-                )
+            items(items = bottomNavigations) {
+                NavigationRow(navController, scaffoldState, it)
             }
             item {
                 Divider(
@@ -152,19 +141,27 @@ fun CatalogListContent(modifier: Modifier) {
 }
 
 @Composable
-fun CataLogRow(catalog: Catalog) {
+fun NavigationRow(navController: NavHostController, scaffoldState: ScaffoldState, route: Route) {
+    val currentRoute = currentRoute(navController)
     Row(
-        modifier = Modifier.padding(vertical = 15.dp, horizontal = 25.dp),
+        modifier = Modifier
+            .padding(vertical = 15.dp, horizontal = 25.dp)
+            .clickable(onClick = {
+                if (currentRoute != route.route) {
+                    navController.navigate(route.route)
+                }
+                GlobalScope.launch(Dispatchers.Main) { scaffoldState.drawerState.close() }
+            }),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            painter = painterResource(catalog.rsKey), null,
+            painter = painterResource(route.icon), null,
             modifier = Modifier.size(22.dp),
             tint = TwitterGray
         )
         Text(
             modifier = Modifier.padding(start = 16.dp),
-            text = catalog.title,
+            text = route.route,
             fontSize = 18.sp,
         )
     }
