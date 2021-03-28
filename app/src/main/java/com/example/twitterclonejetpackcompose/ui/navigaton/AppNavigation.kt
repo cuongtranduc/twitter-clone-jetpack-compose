@@ -6,7 +6,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.twitterclonejetpackcompose.ui.navigaton.Route
 import com.example.twitterclonejetpackcompose.ui.navigaton.Routes
-import com.example.twitterclonejetpackcompose.ui.screen.*
 
 @Composable
 fun AppNavigation(

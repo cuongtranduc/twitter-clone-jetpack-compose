@@ -7,16 +7,12 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.KEY_ROUTE
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigate
-import com.example.twitterclonejetpackcompose.R
 import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
 
 val bottomNavigationItems = listOf(
