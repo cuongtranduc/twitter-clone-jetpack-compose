@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,7 +19,6 @@ import androidx.navigation.NavHostController
 import com.example.twitterclonejetpackcompose.R
 import com.example.twitterclonejetpackcompose.ui.navigaton.Route
 import com.example.twitterclonejetpackcompose.ui.navigaton.currentRoute
-import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -38,6 +37,8 @@ fun AppTopBar(navController: NavHostController, scaffoldState: ScaffoldState) {
 
 @Composable
 fun MainTopBar(scaffoldState: ScaffoldState) {
+    val coroutineScope = rememberCoroutineScope()
+
     Column() {
         TopAppBar(
             elevation = 0.dp,
@@ -61,7 +62,9 @@ fun MainTopBar(scaffoldState: ScaffoldState) {
             navigationIcon = {
                 IconButton(
                     onClick = {
-                        GlobalScope.launch(Dispatchers.Main) { scaffoldState.drawerState.open() }
+                        coroutineScope.launch {
+                            scaffoldState.drawerState.open()
+                        }
                     },
                     modifier = Modifier
                 ) {
@@ -69,7 +72,7 @@ fun MainTopBar(scaffoldState: ScaffoldState) {
                         imageVector = Icons.Filled.Menu,
                         null,
                         modifier = Modifier.size(24.dp),
-                        tint = TwitterBlue
+                        tint = MaterialTheme.colors.primary
                     )
                 }
             },
@@ -108,7 +111,7 @@ fun TopBarWithBackButton(navController: NavHostController) {
                         imageVector = Icons.Filled.ArrowBack,
                         null,
                         modifier = Modifier.size(28.dp),
-                        tint = TwitterBlue
+                        tint = MaterialTheme.colors.primary
                     )
                 }
             },

@@ -26,3 +26,27 @@ val Typography = Typography(
     )
     */
 )
+
+//data class TextStyle(
+//    val color: Color = Color.Unspecified,
+//    val fontSize: TextUnit = TextUnit.Unspecified,
+//    val fontWeight: FontWeight? = null,
+//    val fontStyle: FontStyle? = null,
+//    val fontFamily: FontFamily? = null,
+//    val letterSpacing: TextUnit = TextUnit.Unspecified,
+//    val background: Color = Color.Unspecified,
+//    val textAlign: TextAlign? = null,
+//    val textDirection: TextDirection? = null,
+//    val lineHeight: TextUnit = TextUnit.Unspecified,
+//)
+//
+//private val Montserrat = FontFamily(
+//    Font(R.font.montserrat_regular),
+//    Font(R.font.montserrat_medium, FontWeight.W500),
+//    Font(R.font.montserrat_semibold, FontWeight.W600)
+//)
+//
+//private val Domine = FontFamily(
+//    Font(R.font.domine_regular),
+//    Font(R.font.domine_bold, FontWeight.Bold)
+//)

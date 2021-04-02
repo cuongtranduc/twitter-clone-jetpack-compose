@@ -57,4 +57,5 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1'
     implementation "com.google.accompanist:accompanist-coil:0.6.2"
     implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
+    implementation "com.google.accompanist:accompanist-insets:0.7.0"
 }

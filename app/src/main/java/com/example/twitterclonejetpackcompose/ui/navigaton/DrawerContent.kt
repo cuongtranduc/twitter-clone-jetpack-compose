@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,8 +21,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import com.example.twitterclonejetpackcompose.R
 import com.example.twitterclonejetpackcompose.data.User
-import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
-import com.example.twitterclonejetpackcompose.ui.theme.TwitterGray
 import com.google.accompanist.coil.CoilImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -87,15 +86,15 @@ fun ProfileContent(modifier: Modifier = Modifier) {
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp
         )
-        Text("@" + user.userName, color = TwitterGray)
+        Text("@" + user.userName, color = MaterialTheme.colors.secondary)
         Row(modifier = Modifier.padding(top = 15.dp)) {
             Row() {
                 Text(user.following.toString(), fontWeight = FontWeight.Bold)
-                Text(" Following", color = TwitterGray)
+                Text(" Following", color = MaterialTheme.colors.secondary)
             }
             Row(modifier = Modifier.padding(start = 10.dp)) {
                 Text(user.follower.toString(), fontWeight = FontWeight.Bold)
-                Text(" Followers", color = TwitterGray)
+                Text(" Followers", color = MaterialTheme.colors.secondary)
             }
         }
     }
@@ -141,6 +140,7 @@ fun ListContent(
 
 @Composable
 fun NavigationRow(navController: NavHostController, scaffoldState: ScaffoldState, route: Route) {
+    val coroutineScope = rememberCoroutineScope()
     val currentRoute = currentRoute(navController)
     Row(
         modifier = Modifier
@@ -149,14 +149,16 @@ fun NavigationRow(navController: NavHostController, scaffoldState: ScaffoldState
                 if (currentRoute != route.route) {
                     navController.navigate(route.route)
                 }
-                GlobalScope.launch(Dispatchers.Main) { scaffoldState.drawerState.close() }
+                coroutineScope.launch {
+                    scaffoldState.drawerState.close()
+                }
             }),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             painter = painterResource(route.icon), null,
             modifier = Modifier.size(22.dp),
-            tint = TwitterGray
+            tint = MaterialTheme.colors.secondary
         )
         Text(
             modifier = Modifier.padding(start = 16.dp),
@@ -184,7 +186,7 @@ fun BottomContent() {
                     painter = painterResource(R.drawable.ic_theme),
                     null,
                     modifier = Modifier.size(24.dp),
-                    tint = TwitterBlue
+                    tint = MaterialTheme.colors.primary
                 )
             }
             Box(modifier = Modifier.weight(1F))
@@ -193,7 +195,7 @@ fun BottomContent() {
                     painter = painterResource(R.drawable.ic_qrcode),
                     null,
                     modifier = Modifier.size(24.dp),
-                    tint = TwitterBlue
+                    tint = MaterialTheme.colors.primary
                 )
             }
         }

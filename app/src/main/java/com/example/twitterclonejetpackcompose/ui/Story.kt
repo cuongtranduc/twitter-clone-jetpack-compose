@@ -6,10 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Add
 import androidx.compose.runtime.Composable
@@ -22,8 +19,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.twitterclonejetpackcompose.data.Story
-import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
-import com.example.twitterclonejetpackcompose.ui.theme.TwitterGray
 import com.google.accompanist.coil.CoilImage
 
 val Stories: ArrayList<Story> = arrayListOf(
@@ -91,7 +86,7 @@ fun CreateStoryCompose() {
             Text(
                 "Add",
                 fontSize = 14.sp,
-                color = TwitterGray,
+                color = MaterialTheme.colors.secondary,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
             )
@@ -101,7 +96,7 @@ fun CreateStoryCompose() {
             modifier = Modifier
                 .absoluteOffset(38.dp, 36.dp)
                 .size(16.dp),
-            border = BorderStroke(2.dp, Color.White),
+            border = BorderStroke(2.dp, MaterialTheme.colors.background),
             shape = CircleShape,
             contentPadding = PaddingValues(0.dp),
         ) {
@@ -112,7 +107,7 @@ fun CreateStoryCompose() {
                 modifier = Modifier
                     .clip(shape = CircleShape)
                     .size(14.dp)
-                    .background(TwitterBlue)
+                    .background(MaterialTheme.colors.primary)
             )
         }
 
@@ -130,7 +125,7 @@ fun Story(story: Story) {
             onClick = { /*TODO*/ },
             modifier = Modifier.size(55.dp),  //avoid the oval shape
             shape = CircleShape,
-            border = BorderStroke(1.5.dp, TwitterBlue),
+            border = BorderStroke(1.5.dp, MaterialTheme.colors.primary),
             contentPadding = PaddingValues(3.5.dp),
         ) {
             CoilImage(
@@ -145,7 +140,7 @@ fun Story(story: Story) {
         Text(
             story.username,
             fontSize = 14.sp,
-            color = TwitterGray,
+            color = MaterialTheme.colors.secondary,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
         )

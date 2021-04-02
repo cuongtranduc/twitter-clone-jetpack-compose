@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.twitterclonejetpackcompose.R
 import com.example.twitterclonejetpackcompose.data.Tweet
-import com.example.twitterclonejetpackcompose.ui.theme.TwitterGray
 import com.google.accompanist.coil.CoilImage
 
 //val tweet = Tweet()
@@ -53,7 +53,7 @@ fun TweetCompose(index: Int, tweet: Tweet, modifier: Modifier = Modifier) {
                     )
                     Text(
                         " @" + tweet.userName,
-                        color = TwitterGray,
+                        color = MaterialTheme.colors.secondary,
                     )
                 }
                 Text(tweet.content, modifier = Modifier.padding(top = 5.dp))
@@ -71,9 +71,9 @@ fun IconRow(tweet: Tweet) {
                 painter = painterResource(R.drawable.ic_comment),
                 null,
                 modifier = Modifier.size(16.dp),
-                tint = TwitterGray
+                tint = MaterialTheme.colors.secondary
             )
-            Text(" " + tweet.numberOfComments.toString(), fontSize = 14.sp, color = TwitterGray)
+            Text(" " + tweet.numberOfComments.toString(), fontSize = 14.sp, color = MaterialTheme.colors.secondary)
         }
         Row(
             modifier = Modifier.padding(start = 40.dp),
@@ -83,9 +83,9 @@ fun IconRow(tweet: Tweet) {
                 painter = painterResource(R.drawable.ic_retweet),
                 null,
                 modifier = Modifier.size(20.dp),
-                tint = TwitterGray
+                tint = MaterialTheme.colors.secondary
             )
-            Text(" " + tweet.numberOfRetweet.toString(), fontSize = 14.sp, color = TwitterGray)
+            Text(" " + tweet.numberOfRetweet.toString(), fontSize = 14.sp, color = MaterialTheme.colors.secondary)
         }
         Row(
             modifier = Modifier.padding(start = 40.dp),
@@ -95,9 +95,9 @@ fun IconRow(tweet: Tweet) {
                 painter = painterResource(R.drawable.ic_like),
                 null,
                 modifier = Modifier.size(16.dp),
-                tint = TwitterGray
+                tint = MaterialTheme.colors.secondary
             )
-            Text(" " + tweet.numberOfLikes.toString(), fontSize = 14.sp, color = TwitterGray)
+            Text(" " + tweet.numberOfLikes.toString(), fontSize = 14.sp, color = MaterialTheme.colors.secondary)
         }
         Row(
             modifier = Modifier.padding(start = 40.dp),
@@ -107,7 +107,7 @@ fun IconRow(tweet: Tweet) {
                 painter = painterResource(R.drawable.ic_share),
                 null,
                 modifier = Modifier.size(16.dp),
-                tint = TwitterGray
+                tint = MaterialTheme.colors.secondary
             )
         }
     }

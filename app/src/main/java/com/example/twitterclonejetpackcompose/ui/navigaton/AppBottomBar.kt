@@ -2,10 +2,7 @@ package com.example.twitterclonejetpackcompose.ui.navigaton
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,7 +10,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
-import com.example.twitterclonejetpackcompose.ui.theme.TwitterBlue
 
 val bottomNavigationItems = listOf(
     Route.Home,
@@ -34,7 +30,7 @@ fun AppBottomBar(navController: NavHostController) {
         BottomNavigation(
             modifier = Modifier,
             elevation = 0.dp,
-            backgroundColor = Color(0xFFFFFFFF)
+            backgroundColor = MaterialTheme.colors.background
         ) {
             bottomNavigationItems.forEach { item ->
                 BottomNavigationItem(
@@ -43,7 +39,7 @@ fun AppBottomBar(navController: NavHostController) {
                             painter = painterResource(id = item.icon),
                             null,
                             modifier = Modifier.size(if ("Home" == item.route) 24.dp else 20.dp),
-                            tint = if (currentRoute == item.route) TwitterBlue else Color.Unspecified
+                            tint = if (currentRoute == item.route) MaterialTheme.colors.primary else Color.Unspecified
                         )
                     },
                     selected = currentRoute == item.route,

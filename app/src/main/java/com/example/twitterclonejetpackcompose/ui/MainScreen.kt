@@ -1,14 +1,15 @@
 package com.example.twitterclonejetpackcompose.ui
 
-import androidx.compose.animation.ExperimentalAnimationApi
+import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.DrawerValue
-import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberDrawerState
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -18,13 +19,18 @@ import com.example.twitterclonejetpackcompose.ui.navigaton.AppBottomBar
 import com.example.twitterclonejetpackcompose.ui.navigaton.DrawerContent
 import com.example.twitterclonejetpackcompose.ui.navigaton.Route
 import com.example.twitterclonejetpackcompose.ui.navigaton.currentRoute
+import com.google.accompanist.insets.*
+import com.google.accompanist.insets.statusBarsHeight
 
 @Composable
-fun Main() {
+fun MainScreen() {
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
 
     Scaffold(
+        modifier = Modifier
+            .background(MaterialTheme.colors.primaryVariant)
+            .statusBarsPadding(),
         bottomBar = {
             AppBottomBar(navController)
         },
